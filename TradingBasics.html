@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Trading Basics - Voyager Education</title>
+  <link rel="stylesheet" href="eduStyle.css">
+</head>
+<body>
+
+  <!--Nebula & starfield background-->
+  <div class="nebula"></div>
+  <div class="stars"></div>
+
+
+  <script>
+  // Generate random stars
+  const starContainer = document.querySelector('.stars');
+  const numStars = 150; // adjust for density
+
+  for (let i = 0; i < numStars; i++) {
+    const star = document.createElement('div');
+    star.className = 'star';
+    star.style.top = Math.random() * 100 + '%';
+    star.style.left = Math.random() * 100 + '%';
+    star.style.animationDuration = (Math.random() * 3 + 2) + 's';
+    starContainer.appendChild(star);
+  }
+    </script>
+
+  <section class="edu-card">
+    <h2>Trading Basics</h2>
+    <p>
+      This module introduces the fundamentals of trading: candlestick patterns, support and resistance,
+      and risk management principles. It’s designed for beginners who want a strong foundation.
+    </p>
+    
+    <div>
+    <h3>Candlestick Patterns</h3>
+    <p>Explanation of bullish/bearish candles, doji, engulfing patterns, etc.</p>
+    </div>
+
+    <div>
+    <h3>Risk Management</h3>
+    <p>Position sizing, stop-loss placement, and why risk per trade matters.</p>
+    </div>
+
+    <div>
+    <h3>Market Structure</h3>
+    <p>Understanding trends, consolidations, and breakouts.</p>
+    </div>
+  </section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<footer>
+    <p>&copy; 2024 Visual Voyager, All rights reserved.</p>
+	<p>Thank You for visiting our website! We hope you found our indicators and strategies insightful.</p>
+	<p>Happy trading!</p>
+</footer>
+</body>
+</html>

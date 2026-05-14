@@ -1,0 +1,171 @@
+	/* Global Styles */
+    body {
+      font-family: 'Segoe UI', Arial, sans-serif;
+      margin: 0;
+      background: radial-gradient(circle at top, #0b0c2a, #000);
+      color: #e0e0ff;      
+    }
+    /**/
+
+    /* Header & Footer */
+   header, footer {
+     background: linear-gradient(90deg, #1a1a40, #0b0c2a);
+     color: #fff;
+     text-align: center;
+     padding: 2rem;
+     box-shadow: 0 0 20px rgba(0,0,255,0.5);
+   }
+   header h1 {
+     font-size: 2.5rem;
+     text-shadow: 0 0 10px #7f5af0;
+     text-align: center;
+   }
+   /**/
+
+   	/* Nvigation Bar */
+  nav {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background: rgba(10,10,30,0.85);
+    backdrop-filter: blur(6px);
+    z-index: 1000;
+    box-shadow: 0 0 15px #7f5af0;
+  }
+
+  nav ul {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    margin: 0;
+    padding: 0.8rem;
+  }
+
+  nav li {
+    margin: 0 1.5rem;
+  }
+
+  nav a {
+    color: #e0e0ff;
+    text-decoration: none;
+    font-weight: bold;
+    text-shadow: 0 0 8px #00d9ff;
+    transition: 0.3s;
+  }
+
+    nav a:hover {
+        color: #7f5af0;
+        text-shadow: 0 0 12px #7f5af0;
+    }
+    /**/
+
+
+
+
+
+
+
+   /*Body Section*/
+    section {
+      padding: 3rem 2rem;
+      max-width: 1200px;
+      margin: auto;
+    }
+
+    h2 {
+      text-align: center;
+      color: #7f5af0;
+      text-shadow: 0 0 8px #7f5af0;
+    }
+    p {
+      text-align: center;
+      color: white; 
+    }
+	/**/
+
+
+
+    #education {
+    background: rgba(15,15,30,0.9);
+    color: #e0e0ff;
+    padding: 3rem 2rem;
+    text-align: center;
+    }
+
+    .edu-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+    }
+
+    /*Education Hud Section*/
+    .edu-card {
+    background: rgba(20,20,40,0.9);
+    border-radius: 12px;
+    padding: 1.5rem;
+    box-shadow: 0 0 15px rgba(127,90,240,0.6);
+    transition: 0.3s;
+    }
+
+    .edu-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 0 20px #00d9ff;
+    }
+
+    .edu-card h2, h3 {
+    display: inline-block;
+    margin-top: 1rem;
+    color: #00d9ff;
+    text-decoration: none;
+    font-weight: bold;
+    }
+
+
+
+
+
+
+    
+    /* Starfield background */
+    .stars {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background: transparent;
+    overflow: hidden;
+    z-index: -1;
+    }
+
+    .star {
+    position: absolute;
+    width: 2px;
+    height: 2px;
+    background: white;
+    border-radius: 50%;
+    animation: twinkle 2s infinite alternate;
+    }
+
+    @keyframes twinkle {
+    from { opacity: 0.2; }
+    to { opacity: 1; }
+    }
+    /**/
+
+    /* Nebula clouds */
+    .nebula {
+    position: fixed;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle at 30% 30%, rgba(127,90,240,0.3), transparent 70%),
+                radial-gradient(circle at 70% 70%, rgba(0,217,255,0.25), transparent 70%),
+                radial-gradient(circle at 50% 20%, rgba(255,0,150,0.2), transparent 70%);
+    animation: drift 60s linear infinite;
+    z-index: -2;
+    }
+
+    @keyframes drift {
+    from { transform: translate(0,0) scale(1); }
+    to { transform: translate(-20%, -20%) scale(1.2); }
+    }
+    /**/

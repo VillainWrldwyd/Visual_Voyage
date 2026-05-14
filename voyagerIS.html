@@ -1,0 +1,449 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Voyager Indicators Strategies</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-annotation@1.1.0/dist/chartjs-plugin-annotation.min.js"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <!--Nebula & starfield background-->
+    <div class="nebula"></div>
+    <div class="stars"></div>
+
+    FIXME:
+
+    <!-- Navigation Bar.. update to side menu -->
+    <nav id="navbar">
+      <div class="nav-container">
+        <div class="nav-logo">
+          <a href="#hero"><img src="" alt="Visual Voyage" /></a>
+        </div>
+        <!-- Hamburger Icon -->
+        <div class="hamburger" onclick="toggleMenu()">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+        <ul class="nav-menu">
+          <li><a href="#about">About</a></li>
+          <li><a href="#indicators">Indicators</a></li>
+          <li><a href="#team">Team</a></li>
+          <li><a href="#education">Education</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </div>
+    </nav>
+
+    <!-- Header Hero Section -->
+    <header id="hero">
+      <div class="hero-overlay">
+        <div class="hero-content">
+          <h1>VOYAGER INDICATORS/ STRATEGIES</h1>
+          <p>YOUR VISION. OUR VOYAGE.</p>
+        </div>
+      </div>
+    </header>
+
+    <!-- About Section -->
+    <section id="about">
+      <div class="about-container">
+        <div class="about-text">
+          <h2>About Voyager I/S</h2>
+
+          <h3>Vision</h3>
+          <p>.....</p>
+
+          <h3>Mission</h3>
+          <p>....</p>
+          <ul>
+            <li>⚡ ,,,,</li>
+            <li>🌌 ,,,,</li>
+            <li>📚 ,,,,</li>
+          </ul>
+        </div>
+        <div class="about-image">
+          <img src="VVSLOGO.jpg" alt="Visual Voyage" />
+        </div>
+      </div>
+    </section>
+
+    <div class="section-divider"></div>
+
+    <!-- Indicator Showcase -->
+    <section id="indicators">
+      <h2>Voyager Indicators & Strategies</h2>
+      <div class="grid">
+        <div class="card">
+          <h3>vCRT- Indicator</h3>
+          <p>Full stack Candle Range Theory Indicator + Fair Value Gaps</p>
+          <!-- Snapshot from TradingView -->
+          <img
+            src="https://www.tradingview.com/x/abcd1234/"
+            alt="vCRT Indicator Chart"
+          />
+          <!-- Link to live chart -->
+          <a
+            href="https://www.tradingview.com/script/eO6rY4yK-Voyager-Candle-Range-Theory-Indicator/"
+            target="_blank"
+            class="cta"
+            >View Live Chart</a
+          >
+        </div>
+
+        <!-- Another Private Script -->
+        <div class="card">
+          <h3>vSMA- Strategy</h3>
+          <p>vvsTrading v5 Strategy [v4 indicator]</p>
+          <img src="https://www.tradingview.com/x/efgh5678/" alt="vSMA Chart" />
+          <a
+            href="https://www.tradingview.com/script/OVfvY6VC-vvsTrading-Strategy-v5-v4-indicator/"
+            target="_blank"
+            class="cta"
+            >View Live Chart</a
+          >
+        </div>
+      </div>
+    </section>
+
+    <div class="section-divider"></div>
+
+    <!-- Education Hub Section -->
+    <section id="education">
+      <h2>Education Hub</h2>
+      <div class="edu-grid">
+        <div class="edu-card">
+          <h3>Book 1: Trading Basics</h3>
+          <p>
+            Learn the fundamentals of markets, candlesticks, and risk
+            management.
+          </p>
+          <a href="TradingBasics.html">Start Learning</a>
+        </div>
+
+        <div class="edu-card">
+          <h3>Book 2: Psychology & Discipline</h3>
+          <p>Master emotional control and consistency in trading decisions.</p>
+          <a href="Psychology.html">Explore Module</a>
+        </div>
+
+        <div class="edu-card">
+          <h3>Book 3: Advanced Strategies</h3>
+          <p>Dive into modular coding, back testing, and Voyager indicators.</p>
+          <a href="AdvancedStr.html">Go Deeper</a>
+        </div>
+
+        <div class="edu-card">
+          <h3>Book 4: Advanced Trading Concepts</h3>
+          <p>
+            Learn the fundamentals of markets, candlesticks, and risk
+            management.
+          </p>
+          <a href="AdvancedStr.html">Go Deeper</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section Divider -->
+    <div class="section-divider"></div>
+
+    <div class="wave-divider">
+      <svg viewBox="0 0 1440 320">
+        <path fill="#0f0f1e" d="M0,160L1440,320L1440,0L0,0Z"></path>
+      </svg>
+    </div>
+
+    <!-- Books Section (PDFs)-->
+    <div class="section">
+      <div id="section-loader">
+        <span class="loader-text"> More Content Coming Soon....</span>
+      </div>
+
+      <div id="section-content" style="display: none">
+        <h2>Change to books to read (PDFs download links)</h2>
+      </div>
+    </div>
+
+    <!-- Footer ... update-->
+    <footer class="footer skeleton">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <img src="VVSLOGO.jpg" alt="Visual Voyage Logo" />
+          <p>Visual Voyager, Your Vision. Our Voyage.</p>
+        </div>
+
+        <div class="footer-socials">
+          <!-- WhatsApp -->
+          <a href="https://wa.me/+27611831835" target="_blank" title="WhatsApp">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="28"
+              height="28"
+              fill="currentColor"
+              viewBox="0 0 16 16"
+            >
+              <path
+                d="M13.601 2.326A7.926 7.926 0 0 0 8.002 0C3.58 0 0 3.58 0 8c0 1.41.37 2.77 1.07 3.97L0 16l4.13-1.07A7.94 7.94 0 0 0 8 16c4.42 0 8-3.58 8-8 0-2.13-.83-4.14-2.399-5.674zM8 14.5c-1.34 0-2.63-.39-3.73-1.12l-.27-.17-2.45.64.65-2.39-.18-.28A6.52 6.52 0 0 1 1.5 8c0-3.58 2.92-6.5 6.5-6.5 1.74 0 3.37.68 4.6 1.9A6.48 6.48 0 0 1 14.5 8c0 3.58-2.92 6.5-6.5 6.5z"
+              />
+            </svg>
+          </a>
+
+          <!-- Email -->
+          <a href="mailto:visualvoyagerbsn@gmail.com" title="Email">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="28"
+              height="28"
+              fill="currentColor"
+              viewBox="0 0 16 16"
+            >
+              <path
+                d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v.217l-8 4.8-8-4.8V4z"
+              />
+              <path
+                d="M0 6.383l7.555 4.533a.5.5 0 0 0 .89 0L16 6.383V12a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V6.383z"
+              />
+            </svg>
+          </a>
+
+          <!-- Twitter -->
+          <a
+            href="https://twitter.com/worldwide_vvs"
+            target="_blank"
+            title="Twitter"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="28"
+              height="28"
+              fill="currentColor"
+              viewBox="0 0 16 16"
+            >
+              <path
+                d="M5.026 15c6.038 0 9.341-5.003 9.341-9.334 0-.14 0-.282-.01-.423A6.68 6.68 0 0 0 16 3.542a6.56 6.56 0 0 1-1.889.518 3.301 3.301 0 0 0 1.447-1.817 6.533 6.533 0 0 1-2.084.797A3.286 3.286 0 0 0 7.875 6.03a9.325 9.325 0 0 1-6.767-3.429 3.289 3.289 0 0 0 1.018 4.381A3.323 3.323 0 0 1 .64 6.575v.041a3.288 3.288 0 0 0 2.632 3.218 3.203 3.203 0 0 1-.865.115c-.212 0-.418-.021-.619-.061a3.283 3.283 0 0 0 3.067 2.277A6.588 6.588 0 0 1 .78 13.58a6.32 6.32 0 0 1-.78-.045A9.344 9.344 0 0 0 5.026 15z"
+              />
+            </svg>
+          </a>
+
+          <!-- Instagram -->
+          <a
+            href="https://www.instagram.com/villain.world.wide/"
+            target="_blank"
+            title="Instagram"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="28"
+              height="28"
+              fill="currentColor"
+              viewBox="0 0 16 16"
+            >
+              <path
+                d="M8 0C5.832 0 5.555.01 4.703.048c-.852.04-1.436.176-1.944.376a3.92 3.92 0 0 0-1.42.924 3.92 3.92 0 0 0-.924 1.42c-.2.508-.336 1.092-.376 1.944C.01 5.555 0 5.832 0 8s.01 2.445.048 3.297c.04.852.176 1.436.376 1.944.2.508.476.98.924 1.42.44.448.912.724 1.42.924.508.2 1.092.336 1.944.376C5.555 15.99 5.832 16 8 16s2.445-.01 3.297-.048c.852-.04 1.436-.176 1.944-.376a3.92 3.92 0 0 0 1.42-.924 3.92 3.92 0 0 0 .924-1.42c.2-.508.336-1.092.376-1.944C15.99 10.445 16 10.168 16 8s-.01-2.445-.048-3.297c-.04-.852-.176-1.436-.376-1.944a3.92 3.92 0 0 0-.924-1.42 3.92 3.92 0 0 0-1.42-.924c-.508-.2-1.092-.336-1.944-.376C10.445.01 10.168 0 8 0zm0 1.44c2.136 0 2.389.008 3.233.046.78.036 1.204.166 1.486.276.374.145.64.318.92.68.276.282.53.636.68.92.11.282.24.706.276 1.486.038.844.046 1.097.046 3.233s-.008 2.389-.046 3.233c-.036.78-.166 1.204-.276 1.486-.145.374-.318.64-.68.92-.282.276-.636.53-.92.68-.282.11-.706.24-1.486.276-.844.038-1.097.046-3.233.046s-2.389-.008-3.233-.046c-.78-.036-1.204-.166-1.486-.276a3.92 3.92 0 0 0-1.42-.68c-.448-.2-.922-.476-1.42-.68C1 13 0 12 0 8s1-5 2-6c0 .01 0 .02-.002 3zM8 3a5 5 0 1 0 0 10A5 5 0 0 0 8 3zm0 8a3 3 0 1 1 .001-6A3 3 0 0 1 8 11zm4-7a1 1 0 1 0 .001-2A1 1 0 0 0 12 4z"
+              />
+            </svg>
+          </a>
+        </div>
+
+        <!-- Partnerships -->
+        <div class="footer-links">
+          <h4>Partnerships</h4>
+          <ul>
+            <li>
+              <a
+                href="https://my.ifxbrokers.com/live_signup?sidc=27F613CB-C2F0-4E4C-AA17-803049852D78"
+                target="_blank"
+                >IFX Brokers</a
+              >
+            </li>
+            <li>
+              <a
+                href="https://one.exnessonelink.com/a/y1fusf15fr"
+                target="_blank"
+                >Exness</a
+              >
+            </li>
+            <li>
+              <a
+                href="https://universe-x-topaz.vercel.app/?fbclid=PAY2xjawJdw-tleHRuA2FlbQIxMAABp-ndecMs9oxH9YDIECU70wCtMNzWNC8VNcHJwpbId1tOKBQsOwrwDDzbIlrw_aem_ef0Qx_8sUWmuaHmwEj-1ww"
+                target="_blank"
+                >Young Billionaires Universe</a
+              >
+            </li>
+            <li>
+              <a
+                href="https://www.tradingview.com/u/Villain-World_wide/"
+                target="_blank"
+              >
+                Voyager IS Library</a
+              >
+            </li>
+            <li>
+              <a href="https://bit.ly/3l9WEeW" target="_blank">Easy Equities</a>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Other Links -->
+        <div class="footer-contact">
+          <h4>Other Links</h4>
+          <ul>
+            <!--Edit Later-->
+            <li><a href="#team">Voyager Designs</a></li>
+            <li><a href="https://wa.me/+27611831835">Contact Us</a></li>
+            <li><a href="#privacy">Risk Management Policy</a></li>
+            <li>
+              <a
+                href="https://www.tradingview.com/?aff_id=150173&aff_sub=VillainWorldwide"
+                target="_blank"
+                >Need a TradingView account?</a
+              >
+            </li>
+            <li>
+              <a
+                href="https://www.tiktok.com/@visual.voyage.studio"
+                target="_blank"
+                >VoyagerIS TikTok account</a
+              >
+            </li>
+            <li>
+              <a
+                href="https://chat.whatsapp.com/CgM3knZijBj8tpMCJtZxGN"
+                target="_blank"
+                >Traders Community</a
+              >
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Footer Bottom-->
+      <div class="footer-bottom">
+        <p>&copy; 2024 Visual Voyager, All rights reserved.</p>
+      </div>
+
+      <!-- Add scroll up button if needed-->
+    </footer>
+
+    <!-- JavaScripts -->
+    <script>
+      // Generate random stars
+      const starContainer = document.querySelector(".stars");
+      const numStars = 150; // adjust for density
+
+      for (let i = 0; i < numStars; i++) {
+        const star = document.createElement("div");
+        star.className = "star";
+        star.style.top = Math.random() * 100 + "%";
+        star.style.left = Math.random() * 100 + "%";
+        star.style.animationDuration = Math.random() * 3 + 2 + "s";
+        starContainer.appendChild(star);
+      }
+
+      <!--Smooth Scrolling navigation-->
+      // Smooth scroll for nav links
+      document.querySelectorAll("nav a").forEach((anchor) => {
+        anchor.addEventListener("click", function (e) {
+          e.preventDefault();
+          document
+            .querySelector(this.getAttribute("href"))
+            .scrollIntoView({ behavior: "smooth" });
+        });
+      });
+
+      // Scroll reveal for team cards -->
+      const teamCards = document.querySelectorAll(".team-card");
+
+      function revealOnScroll() {
+        const triggerBottom = window.innerHeight * 0.85;
+
+        teamCards.forEach((card) => {
+          const cardTop = card.getBoundingClientRect().top;
+          if (cardTop < triggerBottom) {
+            card.classList.add("visible");
+          }
+        });
+      }
+
+      window.addEventListener("scroll", revealOnScroll);
+      window.addEventListener("load", revealOnScroll);
+
+      // Menu Toggle -->
+      function toggleMenu() {
+        const menu = document.querySelector(".nav-menu");
+        const hamburger = document.querySelector(".hamburger");
+
+        menu.classList.toggle("active");
+        hamburger.classList.toggle("active"); // adds glow when active
+      }
+
+      // Menu Toggle with X animation -->
+      function toggleMenu() {
+        const menu = document.querySelector(".nav-menu");
+        const hamburger = document.querySelector(".hamburger");
+
+        menu.classList.toggle("active");
+        hamburger.classList.toggle("active"); // triggers glow + X animation
+      }
+
+      // Video Slideshow Script -->
+      let currentSlide = 0;
+
+      function showSlide(index) {
+        const slides = document.querySelectorAll(".slide");
+
+        // Wrap around if index goes out of bounds
+        if (index < 0) {
+          index = slides.length - 1;
+        }
+        if (index >= slides.length) {
+          index = 0;
+        }
+
+        // Hide all slides
+        slides.forEach((slide) => slide.classList.remove("active"));
+
+        // Show the selected slide
+        slides[index].classList.add("active");
+
+        // Update currentSlide
+        currentSlide = index;
+      }
+
+      function changeSlide(direction) {
+        showSlide(currentSlide + direction);
+      }
+
+      // Initialize first slide
+      document.addEventListener("DOMContentLoaded", () => {
+        showSlide(currentSlide);
+      });
+
+      // Loader hide on page load
+      window.addEventListener("load", () => {
+        document.getElementById("loader").style.display = "none";
+      });
+
+      // Remove skeleton after loading
+      window.addEventListener("load", () => {
+        document.querySelectorAll(".skeleton").forEach((el) => {
+          el.classList.remove("skeleton");
+        });
+      });
+
+      // Initialize first slide
+      showSlide(currentSlide);
+
+      // Loader toggle for section
+      setTimeout(() => {
+        document.getElementById("section-loader").style.display = "none";
+        document.getElementById("section-content").style.display = "block";
+      }, 3000); // simulate delay
+    </script>
+  </body>
+</html>

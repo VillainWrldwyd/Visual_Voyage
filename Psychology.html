@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Boipelo TradingView Indicators</title>
+
+<style>
+
+	/* Global Styles */
+    body {
+      font-family: 'Segoe UI', Arial, sans-serif;
+      margin: 0;
+      background: radial-gradient(circle at top, #0b0c2a, #000);
+      color: #e0e0ff;      
+    }
+    /**/
+
+    /* Header & Footer */
+   header, footer {
+     background: linear-gradient(90deg, #1a1a40, #0b0c2a);
+     color: #fff;
+     text-align: center;
+     padding: 2rem;
+     box-shadow: 0 0 20px rgba(0,0,255,0.5);
+   }
+   header h1 {
+     font-size: 2.5rem;
+     text-shadow: 0 0 10px #7f5af0;
+     text-align: center;
+   }
+   /**/
+
+    
+    /* Starfield background */
+    .stars {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background: transparent;
+    overflow: hidden;
+    z-index: -1;
+    }
+
+    .star {
+    position: absolute;
+    width: 2px;
+    height: 2px;
+    background: white;
+    border-radius: 50%;
+    animation: twinkle 2s infinite alternate;
+    }
+
+    @keyframes twinkle {
+    from { opacity: 0.2; }
+    to { opacity: 1; }
+    }
+    /**/
+
+    /* Nebula clouds */
+    .nebula {
+    position: fixed;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle at 30% 30%, rgba(127,90,240,0.3), transparent 70%),
+                radial-gradient(circle at 70% 70%, rgba(0,217,255,0.25), transparent 70%),
+                radial-gradient(circle at 50% 20%, rgba(255,0,150,0.2), transparent 70%);
+    animation: drift 60s linear infinite;
+    z-index: -2;
+    }
+
+    @keyframes drift {
+    from { transform: translate(0,0) scale(1); }
+    to { transform: translate(-20%, -20%) scale(1.2); }
+    }
+    /**/
+
+</style>
+
+
+
+
+
+</head>
+
+<body>
+
+  <!--Nebula & starfield background-->
+  <div class="nebula"></div>
+  <div class="stars"></div>
+
+
+  <script>
+  // Generate random stars
+  const starContainer = document.querySelector('.stars');
+  const numStars = 150; // adjust for density
+
+  for (let i = 0; i < numStars; i++) {
+    const star = document.createElement('div');
+    star.className = 'star';
+    star.style.top = Math.random() * 100 + '%';
+    star.style.left = Math.random() * 100 + '%';
+    star.style.animationDuration = (Math.random() * 3 + 2) + 's';
+    starContainer.appendChild(star);
+  }
+    </script>
+
+
+
+
+
+<footer>
+    <p>&copy; 2024 Visual Voyager, All rights reserved.</p>
+	<p>Thank You for visiting our website! We hope you found our indicators and strategies insightful.</p>
+	<p>Happy trading!</p>
+</footer>
+</body>
+</html> 

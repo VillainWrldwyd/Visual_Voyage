@@ -1,0 +1,604 @@
+<!-- index.html -->
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Trade Tracker</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    />
+    <link rel="manifest" href="manifest.json" />
+    <meta name="theme-color" content="#00d9ff" />
+    <style>
+      /* Global Styles */
+      body {
+        font-family: "Inter", sans-serif;
+        background: radial-gradient(
+          circle at top left,
+          #0f2027,
+          #203a43,
+          #2c5364
+        ); /* deep space gradient */
+        color: #e0e0e0;
+        margin: 0;
+        padding: 0;
+      }
+      header {
+        background: linear-gradient(135deg, #1a73e8, #0d47a1);
+        color: #fff;
+        padding: 1rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      button {
+        background: linear-gradient(90deg, #1a73e8, #4285f4);
+        border: none;
+        color: #fff;
+        padding: 0.6rem 1.2rem;
+        border-radius: 8px;
+        cursor: hand;
+        font-weight: 600;
+        transition:
+          background 0.3s ease,
+          transform 0.2s ease;
+      }
+
+      button:hover {
+        background: linear-gradient(90deg, #4285f4, #1a73e8);
+        transform: scale(1.05);
+      }
+      button:active {
+        transform: scale(0.95);
+      }
+
+      .dashboard {
+        display: grid;
+        gap: 1.5rem;
+        padding: 1rem;
+        grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      }
+      /**/
+
+      /* Portfolio and Performance  */
+      .row {
+        display: flex;
+        flex-wrap: wrap;
+        margin: 0 -0.5rem;
+      }
+
+      .half {
+        flex: 1;
+        margin: 0.5rem;
+      }
+
+      .card {
+        background: rgba(255, 255, 255, 0.05);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 12px;
+        padding: 1.5rem;
+        margin: 1rem;
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.6);
+        transition:
+          transform 0.3s ease,
+          box-shadow 0.3s ease;
+      }
+
+      .card.collapsible > h2 {
+        cursor: pointer;
+        position: relative;
+      }
+      .card.collapsible > h2::after {
+        content: "▼";
+        position: absolute;
+        right: 0;
+        top: 50%;
+        transform: translateY(-50%);
+        font-size: 0.8rem;
+        color: #1a73e8;
+        transition: transform 0.3s ease;
+      }
+      .card.collapsible.collapsed > h2::after {
+        transform: translateY(-50%) rotate(-180deg);
+      }
+      .card.collapsible .card-content {
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.3s ease;
+      }
+      .card.collapsible:not(.collapsed) .card-content {
+        max-height: 1000px; /* large enough to show content */
+      }
+
+      .card.collapsible .card-body {
+        display: none;
+      }
+      .card.collapsible.open .card-body {
+        display: block;
+      }
+
+      /** */
+
+      /*Trade Logs */
+      #trades {
+        max-height: 300px; /* ✅ reduce height */
+        overflow-y: auto; /* ✅ scroll if content exceeds */
+      }
+      #trades table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 1rem;
+        font-size: 0.85rem;
+        color: #e0e0e0;
+      }
+      #trades th,
+      #trades td {
+        padding: 10px 12px;
+        text-align: center;
+      }
+      #trades th {
+        background: rgba(255, 255, 255, 0.08);
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+      }
+      #trades tr:nth-child(even) {
+        background: rgba(255, 255, 255, 0.03);
+      }
+      #trades tr:hover {
+        background: rgba(255, 255, 255, 0.12);
+        transition: background 0.2s ease;
+      }
+
+      .section-loader {
+        display: none; /* hidden by default */
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding: 1rem;
+        color: #e0e0e0;
+      }
+      .section-loader p {
+        margin-top: 0.5rem;
+        font-size: 0.8rem;
+      }
+
+      .section-loader {
+        opacity: 0;
+        transition: opacity 0.4s ease;
+      }
+      .section-loader.active {
+        opacity: 1;
+      }
+
+      /**/
+
+      /* Equity Chart*/
+      .chart-controls {
+        margin-bottom: 1rem;
+      }
+      .chart-controls button {
+        margin-right: 0.5rem;
+        padding: 0.5rem 1rem;
+        border: none;
+        border-radius: 6px;
+        background: #1a73e8;
+        color: #fff;
+        cursor: pointer;
+        transition: background 0.2s;
+      }
+      .chart-controls button:hover {
+        background: #155ab6;
+      }
+      #analyticsChart {
+        width: 75%;
+        height: 185px;
+      }
+      /** */
+
+      /* Symbol Performance pie chart*/
+      .symbol-container {
+        display: fixed;
+        align-items: flex-start;
+        gap: 2rem;
+      }
+
+      #symbolAnalytics {
+        max-height: 280px;
+        overflow-y: auto;
+        padding: 1rem;
+      }
+
+      #symbolAnalytics canvas {
+        max-height: 185px;
+        width: auto;
+      }
+      .analytics-flex {
+        display: flex;
+        align-items: flex-start;
+        justify-content: space-between;
+        gap: 1rem;
+      }
+
+      .chart-wrapper {
+        flex: 1;
+        max-width: 220px; /* ✅ shrink pie chart */
+      }
+
+      #symbolStats {
+        flex: 1;
+        max-height: 220px; /* ✅ reduce table height */
+        overflow-y: auto;
+      }
+
+      .stats-table {
+        width: 95%;
+        font-size: 0.83rem; /* ✅ compact text */
+        border-collapse: collapse;
+      }
+
+      .stats-table th,
+      .stats-table td {
+        padding: 0.4rem;
+        text-align: center;
+        border-bottom: 1px solid #ddd;
+      }
+
+      /* ✅ Mobile mode: stack vertically */
+      @media (max-width: 768px) {
+        .analytics-flex {
+          flex-direction: column;
+        }
+        .chart-wrapper {
+          max-width: 100%;
+          margin-bottom: 1rem;
+        }
+      }
+      .stats-table tr:nth-child(even) {
+        background-color: rgba(249, 249, 249, 0.185);
+      }
+      /** /
+
+
+/* Calendar Heatmap*/
+
+      .calendar-header {
+        display: flex;
+        justify-content: space-between; /* nav left, summary right */
+        align-items: center;
+        margin-bottom: 1rem;
+      }
+
+      .calendar-summary {
+        text-align: right;
+        font-weight: bold;
+        color: #e0e0e0;
+        display: flex;
+        gap: 1rem;
+      }
+      .calendar-summary i {
+        margin-right: 6px;
+        color: #1a73e8;
+      }
+
+      .calendar-weekdays {
+        display: grid;
+        grid-template-columns: repeat(7, 1fr);
+        gap: 6px;
+        margin-bottom: 6px;
+        font-weight: bold;
+        text-align: center;
+        color: #ccc;
+      }
+
+      .calendar-weekdays div {
+        padding: 4px;
+      }
+
+      #calendarGrid {
+        display: grid;
+        grid-template-columns: repeat(7, 1fr);
+        gap: 8px;
+      }
+
+      .day-cell {
+        min-height: 80px;
+        border-radius: 10px;
+        padding: 6px;
+        font-size: 0.8rem;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        text-align: center;
+        transition:
+          transform 0.2s ease,
+          box-shadow 0.2s ease;
+      }
+
+      .profit-day {
+        background: rgba(52, 168, 83, 0.55);
+        color: #fff;
+      }
+      .loss-day {
+        background: rgba(234, 67, 53, 0.55);
+        color: #fff;
+      }
+      .neutral-day {
+        background: rgba(255, 255, 255, 0.1);
+        color: #ccc;
+      }
+
+      /**/
+
+      /*New Content section */
+      /* Playbooks */
+      #playbooks .filters {
+        display: flex;
+        gap: 1rem;
+        margin-bottom: 1rem;
+      }
+      #playbooks input {
+        flex: 1;
+        background: rgba(255, 255, 255, 0.08);
+        border: none;
+        border-radius: 6px;
+        padding: 6px 10px;
+        color: #e0e0e0;
+      }
+      #playbooks button {
+        background: #1a73e8;
+        border: none;
+        border-radius: 6px;
+        padding: 6px 12px;
+        color: #fff;
+        cursor: pointer;
+        transition: background 0.3s ease;
+      }
+      #playbooks button:hover {
+        background: #4285f4;
+      }
+      .playbook-card {
+        background: rgba(255, 255, 255, 0.05);
+        padding: 1rem;
+        border-radius: 8px;
+        margin-bottom: 1rem;
+      }
+
+      /** */
+
+      /* Animations */
+      /* Loader for Coming Soon */
+      .section {
+        position: relative;
+        width: 100%;
+        min-height: 200px;
+        border: 1px solid #ccc;
+        border-radius: 8px;
+        overflow: hidden;
+      }
+
+      #section-loader {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.7);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: #fff;
+        font-size: 1.5em;
+        font-family: sans-serif;
+      }
+
+      .loader-text {
+        animation: pulse 1.5s infinite;
+      }
+
+      @keyframes pulse {
+        0% {
+          opacity: 0.3;
+        }
+        50% {
+          opacity: 1;
+        }
+        100% {
+          opacity: 0.3;
+        }
+      }
+      /**/
+
+      /* Starfield background */
+      .stars {
+        position: fixed;
+        width: 100%;
+        height: 100%;
+        background: transparent;
+        overflow: hidden;
+        z-index: -1;
+      }
+
+      .star {
+        position: absolute;
+        width: 2px;
+        height: 2px;
+        background: white;
+        border-radius: 50%;
+        animation: twinkle 2s infinite alternate;
+      }
+
+      @keyframes twinkle {
+        from {
+          opacity: 0.2;
+        }
+        to {
+          opacity: 1;
+        }
+      }
+      /**/
+
+      /*Skeleton Loading */
+      .skeleton {
+        background: linear-gradient(
+          90deg,
+          #e0e0e0 25%,
+          #f1f1f1 50%,
+          #e0e0e0 75%
+        );
+        background-size: 200% 100%;
+        animation: shimmer 1.5s infinite;
+        border-radius: 8px;
+        height: 150px;
+      }
+
+      @keyframes shimmer {
+        0% {
+          background-position: -200% 0;
+        }
+        100% {
+          background-position: 200% 0;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Loader -->
+    <div id="loader">
+      <div class="spinner"></div>
+    </div>
+
+    <!--Nebula & starfield background-->
+    <div class="nebula"></div>
+    <div class="stars"></div>
+
+    <header>
+      <h1>Trade Tracker</h1>
+      <button id="navToggle">☰</button>
+    </header>
+    FIXME: Add responsive sidebar navigation for mobile view
+    <aside id="sidebar">
+      <nav>
+        <ul>
+          <li><a href="index.html">Links page</a></li>
+          <li><a href="#portfolio">Portfolio</a></li>
+          <li><a href="#trades">Trades</a></li>
+          <li><a href="#performance">Performance</a></li>
+        </ul>
+      </nav>
+    </aside>
+
+    <main>
+      <div class="row">
+        <!-- Account Portfolio Section -->
+        <section id="portfolio" class="card half skeleton">
+          <h2>Portfolio View</h2>
+          <div id="portfolioContent"></div>
+        </section>
+
+        <!-- Performance Tracker-->
+        <section id="performance" class="card half skeleton">
+          <h2>Performance Tracking</h2>
+          <div id="performanceContent"></div>
+        </section>
+      </div>
+
+      <!--Trade Logs-->
+      <section id="trades" class="card">
+        <h2>Trade Log</h2>
+        <div id="tradeLoader" class="section-loader">
+          <l-helix size="45" speed="1.5" color="#1a73e8"></l-helix>
+          <p>Loading trade data...</p>
+        </div>
+        <table></table>
+      </section>
+
+      <!-- Equity Curve -->
+      <section id="analytics" class="card skeleton">
+        <h2>Analytics</h2>
+        <div class="chart-controls">
+          <button onclick="showEquity()">Equity Curve</button>
+          <button onclick="showMonthly()">Monthly Performance</button>
+        </div>
+
+        <canvas id="analyticsChart"></canvas>
+      </section>
+
+      <!-- Symbol performance -->
+      <section id="symbolAnalytics" class="card skeleton">
+        <h2>Symbol Analytics</h2>
+        <div class="analytics-flex">
+          <div class="chart-wrapper">
+            <canvas id="symbolChart"></canvas>
+          </div>
+          <div id="symbolStats"></div>
+        </div>
+      </section>
+
+      <!-- HeatMap Calendar-->
+      <section id="activityHeatmap" class="card skeleton">
+        <div class="calendar-header">
+          <div class="calendar-nav">
+            <button id="prevMonth">◀</button>
+            <span id="monthLabel"></span>
+            <button id="nextMonth">▶</button>
+            <button id="todayBtn">Today</button>
+          </div>
+
+          <!-- ✅ Summary moved to top-right -->
+          <div class="calendar-summary">
+            <span id="monthPnL"><i class="fas fas fa-chart-line"></i></span>
+            <span id="monthDays"><i class="fas fas fa-calendar-day"></i></span>
+          </div>
+        </div>
+
+        <div id="calendarWeekdays" class="calendar-weekdays"></div>
+        <div id="calendarGrid"></div>
+      </section>
+
+      <!-- New Content-->
+      <!-- Play Book -->
+      <section id="playbooks" class="card">
+        <h2>Playbooks</h2>
+        <div class="filters">
+          <input
+            type="text"
+            id="strategyInput"
+            placeholder="Enter strategy name"
+          />
+          <button onclick="addStrategy()">Add Strategy</button>
+        </div>
+        <div id="playbookLoader" class="section-loader">
+          <l-wave size="35" speed="2.5" color="#1a73e8"></l-wave>
+          <p>Loading strategies...</p>
+        </div>
+        <div id="playbookList"></div>
+        <canvas id="strategyPerformance"></canvas>
+      </section>
+
+      <!-- Coming Soon Section -->
+      <div class="section skeleton">
+        <div id="section-loader">
+          <span class="loader-text"> More Content Coming Soon....</span>
+        </div>
+
+        <div id="section-content" style="display: none">
+          <h2>Change to books to read (PDFs download links)</h2>
+        </div>
+      </div>
+
+      <!-- Bottom Space-->
+      <section class="space"></section>
+
+      <!-- LDRS Library -->
+      <script src="https://cdn.jsdelivr.net/npm/ldrs/dist/auto/ldrs.min.js"></script>
+      <!-- Equity Chart -->
+      <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+      <!-- Java Script -->
+      <script src="scriptTT.js"></script>
+    </main>
+  </body>
+</html>
